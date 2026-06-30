@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>My First Page</title>
+    <script>
+        function printValue(){
+            var StdName = document.getElementById("studentName").value
+            alert("Hi !"+StdName)
+        }
+
+    </script>
+</head>
+<body>
+    <form name="form1">
+        Enter Name <input type="text" id="studentName">
+        <input type="submit" value="Print Name" onclick="printValue()">
+    </form>
+</body>
+</html>

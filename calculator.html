@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b0b0b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            background: rgba(241, 215, 87, 0.082);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        #display {
+            width: 100%;
+            height: 50px;
+            font-size: 24px;
+            text-align: right;
+            margin-bottom: 15px;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 60px);
+            gap: 10px;
+        }
+
+        button {
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .equal {
+            grid-column: span 2;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="calculator">
+    <input type="text" id="display" class="display" readonly>
+
+    <div class="buttons">
+        <button onclick="pressDigit('7')">7</button>
+        <button onclick="pressDigit('8')">8</button>
+        <button onclick="pressDigit('9')">9</button>
+        <button onclick="pressOperator('/')">/</button>
+
+        <button onclick="pressDigit('4')">4</button>
+        <button onclick="pressDigit('5')">5</button>
+        <button onclick="pressDigit('6')">6</button>
+        <button onclick="pressOperator('*')">*</button>
+        
+        <button onclick="pressDigit('1')">1</button>
+        <button onclick="pressDigit('2')">2</button>
+        <button onclick="pressDigit('3')">3</button>
+        <button onclick="pressOperator('-')">-</button>
+        
+        <button onclick="pressDigit('0')">0</button>
+        <button onclick="pressDigit('00')">00</button>
+        <button onclick="pressDot('.')">.</button>
+        <button onclick="pressOperator('+')">+</button>
+        <button onclick="clearAll()">C</button>
+
+
+        <button class="equal" onclick="pressEquals()">=</button>
+    </div>
+</div>
+
+<script>
+    const display = document.getElementById("display");
+    let firstNumber="";
+    let secondNumber="";
+    let operator=null;
+    let enteringSecond=false;
+    function pressDigit(num){
+        if(!enteringSecond){
+            firstNumber+=num;
+            display.value=firstNumber;
+        }else{
+            secondNumber+=num;
+            display.value=secondNumber;
+        }
+    }
+    function pressDot(){
+        if(!enteringSecond){
+            if(!firstNumber.includes(".")){
+                firstNumber+=firstNumber===""?"0.":".";
+                display.value=firstNumber;
+            }
+        }else{
+            if(!secondNumber.includes(".")){
+                secondNumber+=secondNumber===""?"0.":".";
+                display.value=secondNumber;
+            }
+        }
+    }
+    function pressOperator(op){
+        if(firstNumber==="")return;
+        operator=op;
+        enteringSecond=true;
+        display.value="";
+
+    }
+    function pressEquals(){
+        if(firstNumber==="" || secondNumber===""|| operator ===null)return;
+        const a=parseFloat(firstNumber);
+        const b=parseFloat(secondNumber);
+        let result;
+        switch(operator){
+            case "+":result =a+b;break;
+            case "-":result =a-b;break;
+            case "*":result =a*b;break;
+            case "/":result=b===0?"ERROR" :a/b;break;
+        }
+        display.value=result;
+        firstNumber=result.toString();
+        secondNumber="";
+        operator=null;
+        enteringSecond=false;
+    }
+    function clearAll(){
+        firstNumber="";
+        secondNumber="";
+        operator =null;
+        enteringSecond=false;
+        display.value="";
+    }
+
+</script>
+
+</body>
+</html>

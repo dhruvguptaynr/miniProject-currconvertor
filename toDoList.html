@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Todo List</title>
+    <style>
+        input{
+            width: 70%;
+            padding:8px;
+        }
+        .display {
+            width: 250px;
+            height: 30px;
+            font-size: 24px;
+            text-align: right;
+            margin-bottom: 15px;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        
+        .tdList{
+            height: 300px;
+            width: 300px;
+            padding: 10px;
+
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        .tasks{
+            display: flex;
+            align-items: center;
+            height: 30px;
+            width: 250px;
+            text-align: left;
+
+            margin: 10px;
+            border: 1px solid black;
+        }
+        .bt:first-of-type{
+            margin-left: auto;
+        }
+        .bt{
+            text-align: right;
+            margin-left: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="tdList" id="tdList">
+        MY TODO LIST<br>
+        <input type="text" id="display">
+        <button onclick="pressAdd()">Add</button>
+        
+    </div>
+    <script>
+        const display=document.getElementById("display")
+        const task=document.getElementById("tdList")
+        function pressAdd(){
+            if(display.value.trim==="")return;
+            task.innerHTML+=`
+            <div class="tasks">
+                <span>${display.value}</span>
+                <button class="bt" onclick="ok(this)">✅</button>
+                <button class="bt" onclick="deleteIt(this)">❌</button>
+            </div>
+            `;
+            display.value="";
+
+        }
+        function ok(button){
+            button.parentELement
+            .parentELement.querySelector("span")
+            .classList.togggle("done");
+        }
+        function deleteIt(button){
+            const div=button.parentELement.parentELement;
+            div.classList.add("remove");
+            setTimeout(function(){
+                div.remove();
+            },500);
+        }
+
+    </script>
+    
+</body>
+</html>
