@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="dashboard.css">
+
+</head>
+<body>
+<header>
+    <h1>💱 Currency Converter Dashboard</h1>
+</header>
+<h3>
+Welcome,
+<span id="userName"></span>
+👋
+</h3>
+
+<div class="container">
+
+    <h2>Convert Currency</h2>
+
+    <input
+        type="number"
+        id="amount"
+        placeholder="Enter Amount">
+
+    <select id="fromCurrency"></select>
+
+    <select id="toCurrency"></select>
+
+    <button id="convertBtn">
+        Convert
+    </button>
+
+    <h2 id="result"></h2>
+
+    <button id="saveFavorite">
+        ⭐ Save Favorite Pair
+    </button>
+
+    <h3 style="margin-top:25px;">
+        Favorite Pairs
+    </h3>
+
+    <ul id="favorites"></ul>
+
+</div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

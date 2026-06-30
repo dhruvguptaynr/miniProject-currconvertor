@@ -72,10 +72,7 @@ saveBtn.addEventListener("click", () => {
 
     displayFavorites();
 });
-document.getElementById("logoutBtn").addEventListener("click", () => {
-    localStorage.removeItem("loggedInUser");
-    window.location.href = "index.html";
-});
+
 function displayFavorites() {
     favoritesList.innerHTML = "";
 
